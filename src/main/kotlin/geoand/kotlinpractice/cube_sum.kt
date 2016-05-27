@@ -5,8 +5,7 @@ package geoand.kotlinpractice
  */
 
 /**
- * Prints all integer numbers that satisfy the following equation
- * a^3 + b^3 = c^3 + d^3 where a#c and b#d (see Hardy–Ramanujan number)
+ * Prints numbers that are expressible as the sum of two cubes in two different ways
  */
 fun solve(max: Int) {
     val range = 1.rangeTo(max)
@@ -41,5 +40,5 @@ private fun sum(pair: Pair<Int, Int>) = power(pair.first) + power(pair.second)
 private fun power(i: Int): Int = Math.pow(i * 1.0, 3.0).toInt()
 
 fun main(args : Array<String>) {
-    solve(if (args.size == 1) args.first().toInt() else 100)
+    solve(if (args.size == 1) args.first().toInt() else 20)
 }
