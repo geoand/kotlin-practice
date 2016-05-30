@@ -15,7 +15,7 @@ fun solve(max: Int) {
     enumerateRangeCommutative(range, { pair ->
         val sum = sum(pair)
 
-        var list = resultsCache[sum] ?: mutableListOf()
+        val list = resultsCache[sum] ?: mutableListOf()
         list.add(pair)
 
         resultsCache[sum] = list
