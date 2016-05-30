@@ -14,6 +14,11 @@ fun <T> List<T>.tail(): List<T> {
     return drop(1)
 }
 
+fun <T> MutableList<T>.append(element: T): MutableList<T> {
+    this.add(element)
+    return this
+}
+
 fun <T> List<T>.collate(size: Int, step: Int = size): List<List<T>> {
     require(size >= 0) {"size must not be negative"}
     require(step <= size) {"step must be at most equal to size"}
@@ -27,13 +32,9 @@ private tailrec fun <T> collateRec(list : List<T>, size: Int, step: Int, accumul
     }
 
     if(list.size < size) {
-        return appendToAccumulatorAndReturn(accumulator, list)
+        return accumulator.append(list)
     }
 
-    return collateRec(list.subList(step, list.size), size, step, appendToAccumulatorAndReturn(accumulator, list.subList(0, size)))
+    return collateRec(list.subList(step, list.size), size, step,  accumulator.append(list.subList(0, size)))
 }
 
-private fun <T> appendToAccumulatorAndReturn(accumulator: MutableList<List<T>>, list: List<T> ) : MutableList<List<T>> {
-    accumulator.add(list)
-    return accumulator
-}
